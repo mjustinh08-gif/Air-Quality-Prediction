@@ -79,6 +79,7 @@ test_data = pd.read_csv("hasil_air_quality/hasil_prediksi_test.csv")
 print("Sample predictions:")
 print(test_data.head())
 
+```
 ## Repository Structure
 
 Air-Quality-Prediction/
@@ -91,6 +92,3 @@ Air-Quality-Prediction/
 │   ├── laporan_outlier_iqr.csv            # IQR outlier report
 │   └── perbandingan_model.csv             # Model comparison metrics
 └── README.md                   # Project documentation
-
-
-
