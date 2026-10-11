@@ -78,3 +78,19 @@ print("Expected features:", features)
 test_data = pd.read_csv("hasil_air_quality/hasil_prediksi_test.csv")
 print("Sample predictions:")
 print(test_data.head())
+
+## Repository Structure
+
+Air-Quality-Prediction/
+├── air_quality_ml.ipynb        # End-to-end Jupyter Notebook
+├── AirQualityUCI.csv           # Raw dataset
+├── hasil_air_quality/          # Output directory
+│   ├── model_air_quality_terbaik.joblib   # Persisted best model artifact
+│   ├── hasil_prediksi_test.csv            # Test set actual vs predicted values
+│   ├── laporan_missing_value.csv          # Missing value report
+│   ├── laporan_outlier_iqr.csv            # IQR outlier report
+│   └── perbandingan_model.csv             # Model comparison metrics
+└── README.md                   # Project documentation
+
+
+
