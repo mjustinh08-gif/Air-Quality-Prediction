@@ -59,101 +59,15 @@ Models were evaluated on the 20% unseen test set (1,535 rows) using four standar
 
 - Linear Regression achieved the best overall performance, with the lowest MAE (0.3442) and the highest R² score (0.8499).
 - An R² score of 0.8499 indicates that the model explains approximately 84.99% of the variance in the observed CO concentration values on the test set.
-- Linear Regression outperformed the tree-based ensemble models on this particular chronological test split. However, this result alone does not establish that sensor responses are inherently linear or that the ensemble models overfit.
+- Linear Regression outperformed the tree-based ensemble models on this chronological test split.
 
 ---
 
-## Loading the Saved Model for Inference
+## Model Deployment and Monitoring
 
-The best-performing model is saved in `hasil_air_quality/model_air_quality_terbaik.joblib`.
+The trained machine learning pipeline is deployed as a production-ready HTTP REST API service using **Flask**, complete with runtime inference logging and latency monitoring.
 
-You can load the saved model and inspect predictions using the following Python script:
-
-```python
-import joblib
-import pandas as pd
-
-# 1. Load the saved model artifact
-artifact = joblib.load(
-    "hasil_air_quality/model_air_quality_terbaik.joblib"
-)
-
-model = artifact["model"]
-features = artifact["features"]
-
-print("Model loaded:", artifact["model_name"])
-print("Expected features:", features)
-
-# 2. Load test predictions
-test_data = pd.read_csv(
-    "hasil_air_quality/hasil_prediksi_test.csv"
-)
-
-print("\nSample predictions:")
-print(test_data.head())
-```
-
----
-
-## Repository Structure
-
-```text
-Air-Quality-Prediction/
-│
-├── air_quality_ml.ipynb
-│   └── End-to-end Jupyter Notebook
-│
-├── AirQualityUCI.csv
-│   └── Raw dataset
-│
-├── hasil_air_quality/
-│   ├── model_air_quality_terbaik.joblib
-│   │   └── Persisted best model artifact
-│   │
-│   ├── hasil_prediksi_test.csv
-│   │   └── Test set actual vs. predicted values
-│   │
-│   ├── laporan_missing_value.csv
-│   │   └── Missing value report
-│   │
-│   ├── laporan_outlier_iqr.csv
-│   │   └── IQR outlier report
-│   │
-│   └── perbandingan_model.csv
-│       └── Model comparison metrics
-│
-└── README.md
-    └── Project documentation
-```
-
----
-
-## Technologies Used
-
-- Python
-- Jupyter Notebook
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Joblib
-
----
-
-## Project Objectives
-
-- Analyze air quality data and identify patterns in carbon monoxide concentration.
-- Apply data preprocessing techniques to handle missing values.
-- Detect potential outliers using the Interquartile Range (IQR) method.
-- Develop and compare multiple regression models.
-- Evaluate model performance using MAE, MSE, RMSE, and R².
-- Save the best-performing model for future inference.
-
----
-
-## Conclusion
-
-Based on the evaluation results, Linear Regression achieved the best performance among the three tested algorithms, with an MAE of 0.3442 and an R² score of 0.8499.
-
-The results demonstrate the potential of machine learning regression techniques for estimating carbon monoxide concentrations from sensor measurements and meteorological variables. Further validation on different time periods would help assess the model's generalization performance.
+### 1. Running the API Service
+Start the Flask application server:
+```bash
+python app.py
