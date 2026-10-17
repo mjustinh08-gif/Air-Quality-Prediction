@@ -1,0 +1,12 @@
+2026-10-17 19:04:37,667 [INFO] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.10.2:5000
+2026-10-17 19:04:37,669 [INFO] - [33mPress CTRL+C to quit[0m
+2026-10-17 19:04:37,677 [INFO] -  * Restarting with stat
+2026-10-17 19:04:46,359 [WARNING] -  * Debugger is active!
+2026-10-17 19:04:46,368 [INFO] -  * Debugger PIN: 867-248-509
+2026-10-17 19:17:32,462 [ERROR] - PREDICT_ERROR | Latency: 72.78ms | Error: X has 15 features, but SimpleImputer is expecting 16 features as input.
+2026-10-17 19:17:32,464 [INFO] - 127.0.0.1 - - [17/Oct/2026 19:17:32] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2026-10-17 19:22:16,015 [INFO] - PREDICT_SUCCESS | Rows: 1 | Latency: 66.07ms | Pred: [2.733033760003181]
+2026-10-17 19:22:16,018 [INFO] - 127.0.0.1 - - [17/Oct/2026 19:22:16] "POST /predict HTTP/1.1" 200 -
