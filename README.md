@@ -113,7 +113,7 @@ code JSON
   "status": "success"
 }
 ```
-3. Monitoring & Observability
+## 3. Monitoring & Observability
 
     Latency Tracking: The API automatically measures request-to-response duration in milliseconds (latency_ms) to detect real-time inference bottlenecks.
 
