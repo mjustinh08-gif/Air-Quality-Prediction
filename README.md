@@ -119,7 +119,7 @@ code JSON
 
     Audit Logging (monitoring.log): Each incoming request, response summary, and exception is persistently recorded with ISO timestamps for post-hoc analysis and data drift diagnosis.
 
-Loading the Saved Model for Inference
+## Loading the Saved Model for Inference
 
 The best-performing model is saved in hasil_air_quality/model_air_quality_terbaik.joblib.
 
@@ -149,7 +149,7 @@ test_data = pd.read_csv(
 print("\nSample predictions:")
 print(test_data.head())
 ```
-Repository Structure
+## Repository Structure
 code Text
 
 ```
@@ -191,7 +191,7 @@ Air-Quality-Prediction/
     └── Project documentation
 ```
 
-Technologies Used
+## Technologies Used
 
     Python
 
@@ -211,7 +211,7 @@ Technologies Used
 
     Joblib
 
-Project Objectives
+## Project Objectives
 
     Analyze air quality data and identify patterns in carbon monoxide concentration.
 
@@ -227,7 +227,7 @@ Project Objectives
 
     Deploy the optimal model as an HTTP REST API with latency monitoring and audit logging.
 
-Conclusion
+## Conclusion
 
 Based on the evaluation results, Linear Regression achieved the best performance among the three tested algorithms, with an MAE of 0.3442 and an R² score of 0.8499.
 
