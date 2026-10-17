@@ -71,3 +71,159 @@ The trained machine learning pipeline is deployed as a production-ready HTTP RES
 Start the Flask application server:
 ```bash
 python app.py
+
+```
+The service will initialize and bind to http://127.0.0.1:5000.
+2. Endpoints
+A. Health Check (GET /health)
+
+Verifies service availability, loaded model identity, and input feature requirements.
+code Bash
+
+curl.exe http://127.0.0.1:5000/health
+
+B. Inference Prediction (POST /predict)
+
+Accepts a 16-element feature vector representing sensor responses and atmospheric parameters.
+
+Command (PowerShell / Command Prompt):
+code Powershell
+
+curl.exe -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d "@data.json"
+
+Input Payload (data.json):
+code JSON
+
+{
+  "data": [
+    [1360.0, 150.0, 11.9, 1046.0, 166.0, 1056.0, 113.0, 1692.0, 1268.0, 13.6, 48.9, 0.7578, 3, 10, 2, 18]
+  ]
+}
+
+Response Payload:
+code JSON
+
+{
+  "latency_ms": 66.07,
+  "model_used": "Linear Regression",
+  "prediction_co_concentration": [
+    2.733033760003181
+  ],
+  "status": "success"
+}
+
+3. Monitoring & Observability
+
+    Latency Tracking: The API automatically measures request-to-response duration in milliseconds (latency_ms) to detect real-time inference bottlenecks.
+
+    Audit Logging (monitoring.log): Each incoming request, response summary, and exception is persistently recorded with ISO timestamps for post-hoc analysis and data drift diagnosis.
+
+Loading the Saved Model for Inference
+
+The best-performing model is saved in hasil_air_quality/model_air_quality_terbaik.joblib.
+
+You can load the saved model and inspect predictions using the following Python script:
+code Python
+
+import joblib
+import pandas as pd
+
+# 1. Load the saved model artifact
+artifact = joblib.load(
+    "hasil_air_quality/model_air_quality_terbaik.joblib"
+)
+
+model = artifact["model"]
+features = artifact["features"]
+
+print("Model loaded:", artifact["model_name"])
+print("Expected features:", features)
+
+# 2. Load test predictions
+test_data = pd.read_csv(
+    "hasil_air_quality/hasil_prediksi_test.csv"
+)
+
+print("\nSample predictions:")
+print(test_data.head())
+
+Repository Structure
+code Text
+
+Air-Quality-Prediction/
+│
+├── air_quality_ml.ipynb
+│   └── End-to-end Jupyter Notebook
+│
+├── AirQualityUCI.csv
+│   └── Raw dataset
+│
+├── app.py
+│   └── Flask REST API for model deployment and monitoring
+│
+├── data.json
+│   └── Sample 16-feature input payload for testing predictions
+│
+├── monitoring.log
+│   └── Runtime inference logs and latency audit trail
+│
+├── hasil_air_quality/
+│   ├── model_air_quality_terbaik.joblib
+│   │   └── Persisted best model artifact
+│   │
+│   ├── hasil_prediksi_test.csv
+│   │   └── Test set actual vs. predicted values
+│   │
+│   ├── laporan_missing_value.csv
+│   │   └── Missing value report
+│   │
+│   ├── laporan_outlier_iqr.csv
+│   │   └── IQR outlier report
+│   │
+│   └── perbandingan_model.csv
+│       └── Model comparison metrics
+│
+└── README.md
+    └── Project documentation
+
+Technologies Used
+
+    Python
+
+    Flask (REST API Deployment)
+
+    Jupyter Notebook
+
+    Pandas
+
+    NumPy
+
+    Matplotlib
+
+    Seaborn
+
+    Scikit-learn
+
+    Joblib
+
+Project Objectives
+
+    Analyze air quality data and identify patterns in carbon monoxide concentration.
+
+    Apply data preprocessing techniques to handle missing values.
+
+    Detect potential outliers using the Interquartile Range (IQR) method.
+
+    Develop and compare multiple regression models.
+
+    Evaluate model performance using MAE, MSE, RMSE, and R².
+
+    Save the best-performing model for future inference.
+
+    Deploy the optimal model as an HTTP REST API with latency monitoring and audit logging.
+
+Conclusion
+
+Based on the evaluation results, Linear Regression achieved the best performance among the three tested algorithms, with an MAE of 0.3442 and an R² score of 0.8499.
+
+The model was successfully operationalized using a Flask web API, delivering real-time predictions with sub-100ms latency (~66 ms) and persistent operational logging, demonstrating the viability of this solution in production environmental monitoring scenarios.
