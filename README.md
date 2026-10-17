@@ -79,30 +79,31 @@ A. Health Check (GET /health)
 
 Verifies service availability, loaded model identity, and input feature requirements.
 code Bash
+```
 
 curl.exe http://127.0.0.1:5000/health
-
+```
 B. Inference Prediction (POST /predict)
 
 Accepts a 16-element feature vector representing sensor responses and atmospheric parameters.
 
 Command (PowerShell / Command Prompt):
 code Powershell
-
+```
 curl.exe -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d "@data.json"
-
+```
 Input Payload (data.json):
 code JSON
-
+```
 {
   "data": [
     [1360.0, 150.0, 11.9, 1046.0, 166.0, 1056.0, 113.0, 1692.0, 1268.0, 13.6, 48.9, 0.7578, 3, 10, 2, 18]
   ]
 }
-
+```
 Response Payload:
 code JSON
-
+```
 {
   "latency_ms": 66.07,
   "model_used": "Linear Regression",
@@ -111,7 +112,7 @@ code JSON
   ],
   "status": "success"
 }
-
+```
 3. Monitoring & Observability
 
     Latency Tracking: The API automatically measures request-to-response duration in milliseconds (latency_ms) to detect real-time inference bottlenecks.
@@ -124,7 +125,7 @@ The best-performing model is saved in hasil_air_quality/model_air_quality_terbai
 
 You can load the saved model and inspect predictions using the following Python script:
 code Python
-
+```
 import joblib
 import pandas as pd
 
@@ -140,15 +141,18 @@ print("Model loaded:", artifact["model_name"])
 print("Expected features:", features)
 
 # 2. Load test predictions
+
 test_data = pd.read_csv(
     "hasil_air_quality/hasil_prediksi_test.csv"
 )
 
 print("\nSample predictions:")
 print(test_data.head())
-
+```
 Repository Structure
 code Text
+
+```
 
 Air-Quality-Prediction/
 │
@@ -185,6 +189,7 @@ Air-Quality-Prediction/
 │
 └── README.md
     └── Project documentation
+```
 
 Technologies Used
 
