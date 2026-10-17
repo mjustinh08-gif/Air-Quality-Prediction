@@ -74,7 +74,8 @@ python app.py
 
 ```
 The service will initialize and bind to http://127.0.0.1:5000.
-2. Endpoints
+
+## 2. Endpoints
 A. Health Check (GET /health)
 
 Verifies service availability, loaded model identity, and input feature requirements.
