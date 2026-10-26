@@ -172,21 +172,15 @@ Air-Quality-Prediction/
 ├── monitoring.log
 │   └── Runtime inference logs and latency audit trail
 │
+├── Paper/
+│   └── paper_chicco2021_r2_mae_mse.pdf (Reference paper for MAE, MSE, R²)
+│
 ├── hasil_air_quality/
 │   ├── model_air_quality_terbaik.joblib
-│   │   └── Persisted best model artifact
-│   │
 │   ├── hasil_prediksi_test.csv
-│   │   └── Test set actual vs. predicted values
-│   │
 │   ├── laporan_missing_value.csv
-│   │   └── Missing value report
-│   │
 │   ├── laporan_outlier_iqr.csv
-│   │   └── IQR outlier report
-│   │
 │   └── perbandingan_model.csv
-│       └── Model comparison metrics
 │
 └── README.md
     └── Project documentation
